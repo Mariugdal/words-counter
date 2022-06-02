@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react'
 
+const punctuation = [',','.',':','å'];
 
 function App() {
   let [text, changeText] = useState('');
@@ -11,6 +12,8 @@ function App() {
   }
   function processText(){
     text = text.toLocaleLowerCase();
+    for(let punc of punctuation)
+    text = text.replace(punc,' ')
     let allWords = text.split(' ').filter(i=>i)
     let uniqueWords = [...new Set(allWords)]
     let countedWords = uniqueWords.map(word=>({ 
